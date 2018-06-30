@@ -30,6 +30,18 @@ class PagesController extends AppController
 {
 
     /**
+     * Initialization hook method.
+     *
+     * @return void
+     */
+    public function initialize()
+    {
+        parent::initialize();
+
+        $this->Auth->allow(['display']);
+    }
+
+    /**
      * Displays a view
      *
      * @param array ...$path Path segments.
