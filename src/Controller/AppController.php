@@ -27,7 +27,6 @@ use Cake\Event\Event;
  */
 class AppController extends Controller
 {
-    use \Crud\Controller\ControllerTrait;
 
     /**
      * Initialization hook method.
@@ -46,40 +45,12 @@ class AppController extends Controller
             'enableBeforeRedirect' => false,
         ]);
         $this->loadComponent('Flash');
-        $this->loadComponent('Crud.Crud', [
-            'actions' => [
-                'Crud.Add',
-                'Crud.View',
-                'Crud.Edit',
-                'Crud.Delete',
-                'Crud.Index'
-            ],
-            'listeners' => [
-                'CrudView.View',
-                'Crud.Redirect',
-                'Crud.RelatedModels',
-                'Crud.Search',
-                'CrudView.ViewSearch',
-            ]
-        ]);
 
         /*
          * Enable the following component for recommended CakePHP security settings.
          * see https://book.cakephp.org/3.0/en/controllers/components/security.html
          */
         //$this->loadComponent('Security');
-    }
 
-    /**
-     * Before render callback.
-     *
-     * @param \Cake\Event\Event $event The beforeRender event.
-     * @return void
-     */
-    public function beforeRender(\Cake\Event\Event $event)
-    {
-        if ($this->viewBuilder()->className() === null) {
-            $this->viewBuilder()->className('CrudView\View\CrudView');
-        }
     }
 }
