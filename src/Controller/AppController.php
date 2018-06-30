@@ -27,6 +27,7 @@ use Cake\Event\Event;
  */
 class AppController extends Controller
 {
+    use \Crud\Controller\ControllerTrait;
 
     /**
      * Initialization hook method.
@@ -45,6 +46,15 @@ class AppController extends Controller
             'enableBeforeRedirect' => false,
         ]);
         $this->loadComponent('Flash');
+        $this->loadComponent('Crud.Crud', [
+            'actions' => [
+                'Crud.Add',
+                'Crud.View',
+                'Crud.Edit',
+                'Crud.Delete',
+                'Crud.Index'
+            ]
+        ]);
 
         /*
          * Enable the following component for recommended CakePHP security settings.
