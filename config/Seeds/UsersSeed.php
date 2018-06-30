@@ -21,10 +21,10 @@ class UsersSeed extends AbstractSeed
         $data = [
             [
                 'id' => '1',
-                'username' => 'admin',
-                'password' => '$2y$10$V0PptpiIZbhpPyUahUKVnOWK06rKwo9GVhsCefOhoWelilJK9BsO6',
                 'created' => '2018-06-30 18:56:56',
                 'modified' => '2018-06-30 19:18:00',
+                'username' => 'admin',
+                'password' => '$2y$10$V0PptpiIZbhpPyUahUKVnOWK06rKwo9GVhsCefOhoWelilJK9BsO6',
             ],
         ];
 

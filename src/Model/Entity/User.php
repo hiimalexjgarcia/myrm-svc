@@ -8,10 +8,12 @@ use Cake\ORM\Entity;
  * User Entity
  *
  * @property int $id
- * @property string $username
- * @property string $password
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
+ * @property string $username
+ * @property string $password
+ *
+ * @property \App\Model\Entity\Prize[] $prizes
  */
 class User extends Entity
 {
@@ -26,10 +28,11 @@ class User extends Entity
      * @var array
      */
     protected $_accessible = [
+        'created' => true,
+        'modified' => true,
         'username' => true,
         'password' => true,
-        'created' => true,
-        'modified' => true
+        'prizes' => true
     ];
 
     /**
