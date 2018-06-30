@@ -53,6 +53,13 @@ class AppController extends Controller
                 'Crud.Edit',
                 'Crud.Delete',
                 'Crud.Index'
+            ],
+            'listeners' => [
+                'CrudView.View',
+                'Crud.Redirect',
+                'Crud.RelatedModels',
+                'Crud.Search',
+                'CrudView.ViewSearch',
             ]
         ]);
 
@@ -61,5 +68,18 @@ class AppController extends Controller
          * see https://book.cakephp.org/3.0/en/controllers/components/security.html
          */
         //$this->loadComponent('Security');
+    }
+
+    /**
+     * Before render callback.
+     *
+     * @param \Cake\Event\Event $event The beforeRender event.
+     * @return void
+     */
+    public function beforeRender(\Cake\Event\Event $event)
+    {
+        if ($this->viewBuilder()->className() === null) {
+            $this->viewBuilder()->className('CrudView\View\CrudView');
+        }
     }
 }
