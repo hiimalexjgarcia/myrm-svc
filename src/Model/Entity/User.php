@@ -14,6 +14,7 @@ use Cake\ORM\Entity;
  * @property string $password
  *
  * @property \App\Model\Entity\Prize[] $prizes
+ * @property \App\Model\Entity\Ticket[] $tickets
  */
 class User extends Entity
 {
@@ -32,7 +33,8 @@ class User extends Entity
         'modified' => true,
         'username' => true,
         'password' => true,
-        'prizes' => true
+        'prizes' => true,
+        'tickets' => true
     ];
 
     /**

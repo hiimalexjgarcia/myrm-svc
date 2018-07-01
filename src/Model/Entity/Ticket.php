@@ -4,19 +4,18 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Prize Entity
+ * Ticket Entity
  *
  * @property int $id
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
- * @property string $name
- * @property string $description
+ * @property int $prize_id
  * @property int $user_id
  *
+ * @property \App\Model\Entity\Prize $prize
  * @property \App\Model\Entity\User $user
- * @property \App\Model\Entity\Ticket[] $tickets
  */
-class Prize extends Entity
+class Ticket extends Entity
 {
 
     /**
@@ -31,10 +30,9 @@ class Prize extends Entity
     protected $_accessible = [
         'created' => true,
         'modified' => true,
-        'name' => true,
-        'description' => true,
+        'prize_id' => true,
         'user_id' => true,
-        'user' => true,
-        'tickets' => true
+        'prize' => true,
+        'user' => true
     ];
 }

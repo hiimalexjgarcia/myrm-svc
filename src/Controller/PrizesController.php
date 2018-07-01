@@ -38,7 +38,7 @@ class PrizesController extends AppController
     public function view($id = null)
     {
         $prize = $this->Prizes->get($id, [
-            'contain' => ['Users']
+            'contain' => ['Users', 'Tickets']
         ]);
 
         $this->set('prize', $prize);

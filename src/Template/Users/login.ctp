@@ -4,13 +4,12 @@
  */
 ?>
 <div class="users form large-12 medium-12 columns content">
+    <?= $this->Flash->render('auth') ?>
     <?= $this->Form->create() ?>
     <fieldset>
-        <legend><?= __('Login User') ?></legend>
-        <?php
-            echo $this->Form->control('username');
-            echo $this->Form->control('password');
-        ?>
+        <legend><?= __('Please enter your username and password') ?></legend>
+        <?= $this->Form->control('username') ?>
+        <?= $this->Form->control('password') ?>
     </fieldset>
     <?= $this->Form->button(__('Login')) ?>
     <?= $this->Form->end() ?>

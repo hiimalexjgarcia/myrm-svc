@@ -10,6 +10,7 @@ use Cake\Validation\Validator;
  * Prizes Model
  *
  * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\BelongsTo $Users
+ * @property \App\Model\Table\TicketsTable|\Cake\ORM\Association\HasMany $Tickets
  *
  * @method \App\Model\Entity\Prize get($primaryKey, $options = [])
  * @method \App\Model\Entity\Prize newEntity($data = null, array $options = [])
@@ -43,6 +44,9 @@ class PrizesTable extends Table
 
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id'
+        ]);
+        $this->hasMany('Tickets', [
+            'foreignKey' => 'prize_id'
         ]);
     }
 
