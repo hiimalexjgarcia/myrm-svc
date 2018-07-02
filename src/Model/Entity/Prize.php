@@ -12,9 +12,10 @@ use Cake\ORM\Entity;
  * @property string $name
  * @property string $description
  * @property int $user_id
+ * @property int $raffle_id
  *
  * @property \App\Model\Entity\User $user
- * @property \App\Model\Entity\Ticket[] $tickets
+ * @property \App\Model\Entity\Raffle $raffle
  */
 class Prize extends Entity
 {
@@ -34,7 +35,8 @@ class Prize extends Entity
         'name' => true,
         'description' => true,
         'user_id' => true,
+        'raffle_id' => true,
         'user' => true,
-        'tickets' => true
+        'raffle' => true
     ];
 }

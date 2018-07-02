@@ -10,8 +10,8 @@
         <li><?= $this->Html->link(__('New Prize'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Tickets'), ['controller' => 'Tickets', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Ticket'), ['controller' => 'Tickets', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Raffles'), ['controller' => 'Raffles', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Raffle'), ['controller' => 'Raffles', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="prizes index large-9 medium-8 columns content">
@@ -24,6 +24,7 @@
                 <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('raffle_id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -35,6 +36,7 @@
                 <td><?= h($prize->modified) ?></td>
                 <td><?= h($prize->name) ?></td>
                 <td><?= $prize->has('user') ? $this->Html->link($prize->user->username, ['controller' => 'Users', 'action' => 'view', $prize->user->id]) : '' ?></td>
+                <td><?= $prize->has('raffle') ? $this->Html->link($prize->raffle->title, ['controller' => 'Raffles', 'action' => 'view', $prize->raffle->id]) : '' ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $prize->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $prize->id]) ?>

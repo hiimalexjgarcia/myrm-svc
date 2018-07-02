@@ -21,7 +21,7 @@ class PrizesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Users']
+            'contain' => ['Users', 'Raffles']
         ];
         $prizes = $this->paginate($this->Prizes);
 
@@ -38,7 +38,7 @@ class PrizesController extends AppController
     public function view($id = null)
     {
         $prize = $this->Prizes->get($id, [
-            'contain' => ['Users', 'Tickets']
+            'contain' => ['Users', 'Raffles']
         ]);
 
         $this->set('prize', $prize);
@@ -62,7 +62,8 @@ class PrizesController extends AppController
             $this->Flash->error(__('The prize could not be saved. Please, try again.'));
         }
         $users = $this->Prizes->Users->find('list', ['limit' => 200]);
-        $this->set(compact('prize', 'users'));
+        $raffles = $this->Prizes->Raffles->find('list', ['limit' => 200]);
+        $this->set(compact('prize', 'users', 'raffles'));
     }
 
     /**
@@ -87,7 +88,8 @@ class PrizesController extends AppController
             $this->Flash->error(__('The prize could not be saved. Please, try again.'));
         }
         $users = $this->Prizes->Users->find('list', ['limit' => 200]);
-        $this->set(compact('prize', 'users'));
+        $raffles = $this->Prizes->Raffles->find('list', ['limit' => 200]);
+        $this->set(compact('prize', 'users', 'raffles'));
     }
 
     /**

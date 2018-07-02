@@ -11,22 +11,22 @@
         <li><?= $this->Form->postLink(__('Delete Ticket'), ['action' => 'delete', $ticket->id], ['confirm' => __('Are you sure you want to delete # {0}?', $ticket->id)]) ?> </li>
         <li><?= $this->Html->link(__('List Tickets'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Ticket'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Prizes'), ['controller' => 'Prizes', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Prize'), ['controller' => 'Prizes', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Raffles'), ['controller' => 'Raffles', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Raffle'), ['controller' => 'Raffles', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
 <div class="tickets view large-9 medium-8 columns content">
     <h3><?= h($ticket->id) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th scope="row"><?= __('Prize') ?></th>
-            <td><?= $ticket->has('prize') ? $this->Html->link($ticket->prize->name, ['controller' => 'Prizes', 'action' => 'view', $ticket->prize->id]) : '' ?></td>
-        </tr>
-        <tr>
             <th scope="row"><?= __('User') ?></th>
             <td><?= $ticket->has('user') ? $this->Html->link($ticket->user->username, ['controller' => 'Users', 'action' => 'view', $ticket->user->id]) : '' ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Raffle') ?></th>
+            <td><?= $ticket->has('raffle') ? $this->Html->link($ticket->raffle->title, ['controller' => 'Raffles', 'action' => 'view', $ticket->raffle->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Id') ?></th>

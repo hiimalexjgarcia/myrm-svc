@@ -1,23 +1,23 @@
 <?php
 namespace App\Model\Entity;
 
-use Cake\Auth\DefaultPasswordHasher;
 use Cake\ORM\Entity;
 
 /**
- * User Entity
+ * Raffle Entity
  *
  * @property int $id
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
- * @property string $username
- * @property string $password
+ * @property string $title
+ * @property string $description
+ * @property int $user_id
  *
+ * @property \App\Model\Entity\User $user
  * @property \App\Model\Entity\Prize[] $prizes
- * @property \App\Model\Entity\Raffle[] $raffles
  * @property \App\Model\Entity\Ticket[] $tickets
  */
-class User extends Entity
+class Raffle extends Entity
 {
 
     /**
@@ -32,34 +32,11 @@ class User extends Entity
     protected $_accessible = [
         'created' => true,
         'modified' => true,
-        'username' => true,
-        'password' => true,
+        'title' => true,
+        'description' => true,
+        'user_id' => true,
+        'user' => true,
         'prizes' => true,
-        'raffles' => true,
         'tickets' => true
     ];
-
-    /**
-     * Fields that are excluded from JSON versions of the entity.
-     *
-     * @var array
-     */
-    protected $_hidden = [
-        'password'
-    ];
-
-    /**
-     * Setter function to hash passwords
-     *
-     * @param string $value Unhashed password
-     * @return \Cake\Auth\DefaultPasswordHasher
-     */
-    protected function _setPassword($value)
-    {
-        if (strlen($value)) {
-            $hasher = new DefaultPasswordHasher();
-
-            return $hasher->hash($value);
-        }
-    }
 }

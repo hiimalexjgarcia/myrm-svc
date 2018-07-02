@@ -18,6 +18,7 @@ class UsersControllerTest extends IntegrationTestCase
     public $fixtures = [
         'app.users',
         'app.prizes',
+        'app.raffles',
         'app.tickets'
     ];
 

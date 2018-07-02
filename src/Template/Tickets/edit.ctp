@@ -14,10 +14,10 @@
             )
         ?></li>
         <li><?= $this->Html->link(__('List Tickets'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Prizes'), ['controller' => 'Prizes', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Prize'), ['controller' => 'Prizes', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Raffles'), ['controller' => 'Raffles', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Raffle'), ['controller' => 'Raffles', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="tickets form large-9 medium-8 columns content">
@@ -25,8 +25,8 @@
     <fieldset>
         <legend><?= __('Edit Ticket') ?></legend>
         <?php
-            echo $this->Form->control('prize_id', ['options' => $prizes]);
             echo $this->Form->control('user_id', ['options' => $users]);
+            echo $this->Form->control('raffle_id', ['options' => $raffles]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

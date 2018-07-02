@@ -1,44 +1,46 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Ticket[]|\Cake\Collection\CollectionInterface $tickets
+ * @var \App\Model\Entity\Raffle[]|\Cake\Collection\CollectionInterface $raffles
  */
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Ticket'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('New Raffle'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Raffles'), ['controller' => 'Raffles', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Raffle'), ['controller' => 'Raffles', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Prizes'), ['controller' => 'Prizes', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Prize'), ['controller' => 'Prizes', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Tickets'), ['controller' => 'Tickets', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Ticket'), ['controller' => 'Tickets', 'action' => 'add']) ?></li>
     </ul>
 </nav>
-<div class="tickets index large-9 medium-8 columns content">
-    <h3><?= __('Tickets') ?></h3>
+<div class="raffles index large-9 medium-8 columns content">
+    <h3><?= __('Raffles') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('title') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('raffle_id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($tickets as $ticket): ?>
+            <?php foreach ($raffles as $raffle): ?>
             <tr>
-                <td><?= $this->Number->format($ticket->id) ?></td>
-                <td><?= h($ticket->created) ?></td>
-                <td><?= h($ticket->modified) ?></td>
-                <td><?= $ticket->has('user') ? $this->Html->link($ticket->user->username, ['controller' => 'Users', 'action' => 'view', $ticket->user->id]) : '' ?></td>
-                <td><?= $ticket->has('raffle') ? $this->Html->link($ticket->raffle->title, ['controller' => 'Raffles', 'action' => 'view', $ticket->raffle->id]) : '' ?></td>
+                <td><?= $this->Number->format($raffle->id) ?></td>
+                <td><?= h($raffle->created) ?></td>
+                <td><?= h($raffle->modified) ?></td>
+                <td><?= h($raffle->title) ?></td>
+                <td><?= $raffle->has('user') ? $this->Html->link($raffle->user->username, ['controller' => 'Users', 'action' => 'view', $raffle->user->id]) : '' ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $ticket->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $ticket->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $ticket->id], ['confirm' => __('Are you sure you want to delete # {0}?', $ticket->id)]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $raffle->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $raffle->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $raffle->id], ['confirm' => __('Are you sure you want to delete # {0}?', $raffle->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

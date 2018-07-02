@@ -7,23 +7,24 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Prizes Model
+ * Raffles Model
  *
  * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\BelongsTo $Users
- * @property \App\Model\Table\RafflesTable|\Cake\ORM\Association\BelongsTo $Raffles
+ * @property \App\Model\Table\PrizesTable|\Cake\ORM\Association\HasMany $Prizes
+ * @property \App\Model\Table\TicketsTable|\Cake\ORM\Association\HasMany $Tickets
  *
- * @method \App\Model\Entity\Prize get($primaryKey, $options = [])
- * @method \App\Model\Entity\Prize newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\Prize[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Prize|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Prize|bool saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Prize patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Prize[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\Prize findOrCreate($search, callable $callback = null, $options = [])
+ * @method \App\Model\Entity\Raffle get($primaryKey, $options = [])
+ * @method \App\Model\Entity\Raffle newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\Raffle[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\Raffle|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\Raffle|bool saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\Raffle patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\Raffle[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\Raffle findOrCreate($search, callable $callback = null, $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
-class PrizesTable extends Table
+class RafflesTable extends Table
 {
 
     /**
@@ -36,8 +37,8 @@ class PrizesTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('prizes');
-        $this->setDisplayField('name');
+        $this->setTable('raffles');
+        $this->setDisplayField('title');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
@@ -46,9 +47,11 @@ class PrizesTable extends Table
             'foreignKey' => 'user_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('Raffles', [
-            'foreignKey' => 'raffle_id',
-            'joinType' => 'INNER'
+        $this->hasMany('Prizes', [
+            'foreignKey' => 'raffle_id'
+        ]);
+        $this->hasMany('Tickets', [
+            'foreignKey' => 'raffle_id'
         ]);
     }
 
@@ -65,10 +68,10 @@ class PrizesTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->scalar('name')
-            ->maxLength('name', 255)
-            ->requirePresence('name', 'create')
-            ->notEmpty('name');
+            ->scalar('title')
+            ->maxLength('title', 255)
+            ->requirePresence('title', 'create')
+            ->notEmpty('title');
 
         $validator
             ->scalar('description')
@@ -87,7 +90,6 @@ class PrizesTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['user_id'], 'Users'));
-        $rules->add($rules->existsIn(['raffle_id'], 'Raffles'));
 
         return $rules;
     }

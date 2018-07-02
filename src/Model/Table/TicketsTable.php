@@ -9,8 +9,8 @@ use Cake\Validation\Validator;
 /**
  * Tickets Model
  *
- * @property \App\Model\Table\PrizesTable|\Cake\ORM\Association\BelongsTo $Prizes
  * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\BelongsTo $Users
+ * @property \App\Model\Table\RafflesTable|\Cake\ORM\Association\BelongsTo $Raffles
  *
  * @method \App\Model\Entity\Ticket get($primaryKey, $options = [])
  * @method \App\Model\Entity\Ticket newEntity($data = null, array $options = [])
@@ -42,12 +42,12 @@ class TicketsTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Prizes', [
-            'foreignKey' => 'prize_id',
-            'joinType' => 'INNER'
-        ]);
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('Raffles', [
+            'foreignKey' => 'raffle_id',
             'joinType' => 'INNER'
         ]);
     }
@@ -76,8 +76,8 @@ class TicketsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['prize_id'], 'Prizes'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
+        $rules->add($rules->existsIn(['raffle_id'], 'Raffles'));
 
         return $rules;
     }

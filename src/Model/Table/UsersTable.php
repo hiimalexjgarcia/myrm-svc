@@ -10,6 +10,7 @@ use Cake\Validation\Validator;
  * Users Model
  *
  * @property \App\Model\Table\PrizesTable|\Cake\ORM\Association\HasMany $Prizes
+ * @property \App\Model\Table\RafflesTable|\Cake\ORM\Association\HasMany $Raffles
  * @property \App\Model\Table\TicketsTable|\Cake\ORM\Association\HasMany $Tickets
  *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
@@ -43,6 +44,9 @@ class UsersTable extends Table
         $this->addBehavior('Timestamp');
 
         $this->hasMany('Prizes', [
+            'foreignKey' => 'user_id'
+        ]);
+        $this->hasMany('Raffles', [
             'foreignKey' => 'user_id'
         ]);
         $this->hasMany('Tickets', [

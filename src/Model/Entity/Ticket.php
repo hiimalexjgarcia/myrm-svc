@@ -9,11 +9,11 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
- * @property int $prize_id
  * @property int $user_id
+ * @property int $raffle_id
  *
- * @property \App\Model\Entity\Prize $prize
  * @property \App\Model\Entity\User $user
+ * @property \App\Model\Entity\Raffle $raffle
  */
 class Ticket extends Entity
 {
@@ -30,9 +30,9 @@ class Ticket extends Entity
     protected $_accessible = [
         'created' => true,
         'modified' => true,
-        'prize_id' => true,
         'user_id' => true,
-        'prize' => true,
-        'user' => true
+        'raffle_id' => true,
+        'user' => true,
+        'raffle' => true
     ];
 }
