@@ -1,0 +1,22 @@
+version: '2'
+services:
+  cakephp:
+    build: .
+    depends_on:
+      - mariadb
+    volumes:
+      - .:/var/www/html/
+      - /etc/ssl/certs/ssl-cert-snakeoil.pem:/etc/ssl/certs/ssl-cert-snakeoil.pem
+      - /etc/ssl/private/ssl-cert-snakeoil.key:/etc/ssl/private/ssl-cert-snakeoil.key
+    environment:
+      - DATABASE_URL=mysql://root:root@mariadb/cakephp?encoding=utf8&timezone=UTC&cacheMetadata=true&quoteIdentifiers=false&persistent=false
+    command: sh -c "sleep 30; /var/www/html/bin/cake migrations migrate && apache2-foreground"
+  mariadb:
+    image: mariadb:latest
+    volumes:
+       - mysql_data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=cakephp
+volumes:
+    mysql_data:
