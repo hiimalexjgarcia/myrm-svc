@@ -15,8 +15,8 @@ class CreateRaffles extends AbstractMigration
             ])
             ->update();
         $this->table('tickets')
-            ->dropForeignKey([], 'fk_tickets_prizes')
-            ->removeIndexByName('fk_tickets_prizes_idx')
+            ->dropForeignKey([], 'tickets_ibfk_1')
+            ->removeIndexByName('prize_id')
             ->update();
 
         $this->table('tickets')
@@ -80,7 +80,7 @@ class CreateRaffles extends AbstractMigration
                     'raffle_id',
                 ],
                 [
-                    'name' => 'fk_prizes_raffles_idx',
+                    'name' => 'fk_prizes_raffles1_idx',
                 ]
             )
             ->update();
@@ -97,7 +97,7 @@ class CreateRaffles extends AbstractMigration
                     'raffle_id',
                 ],
                 [
-                    'name' => 'fk_tickets_raffles_idx',
+                    'name' => 'fk_tickets_raffles1_idx',
                 ]
             )
             ->update();
@@ -145,7 +145,7 @@ class CreateRaffles extends AbstractMigration
             );
 
         $this->table('prizes')
-            ->removeIndexByName('fk_prizes_raffles_idx')
+            ->removeIndexByName('fk_prizes_raffles1_idx')
             ->update();
 
         $this->table('prizes')
@@ -158,7 +158,7 @@ class CreateRaffles extends AbstractMigration
             ->update();
 
         $this->table('tickets')
-            ->removeIndexByName('fk_tickets_raffles_idx')
+            ->removeIndexByName('fk_tickets_raffles1_idx')
             ->update();
 
         $this->table('tickets')
@@ -174,7 +174,7 @@ class CreateRaffles extends AbstractMigration
                     'prize_id',
                 ],
                 [
-                    'name' => 'fk_tickets_prizes_idx',
+                    'name' => 'prize_id',
                 ]
             )
             ->update();
